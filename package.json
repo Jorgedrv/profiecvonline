@@ -1,0 +1,26 @@
+{
+  "name": "profilecvonline",
+  "version": "1.0.0",
+  "description": "Project about Curriculum Vitae Online",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Jorgedrv@bitbucket.org/Jorgedrv/profilecvonline.git"
+  },
+  "author": "Jorge Romero and Anderson Gonzalez",
+  "license": "MIT",
+  "homepage": "https://bitbucket.org/Jorgedrv/profilecvonline#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "mongoose": "^4.11.3",
+    "rxjs": "^5.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
