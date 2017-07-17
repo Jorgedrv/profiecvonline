@@ -1,0 +1,27 @@
+version: '3'
+networks:
+  profileCVOnline:
+    driver: bridge
+
+services:
+  backend:
+    build: .
+    container_name: backend
+    ports:
+     - "8000:3678"
+    volumes:
+      - site-backend:/usr/src/app-backend
+    command: bash -c "npm install --verbose && npm run start"
+    networks:
+      - profileCVOnline
+  mongodb_profile:
+    image: mongo:latest
+    container_name: mongodb_profile
+    ports:
+        - 27018:27017
+    command: mongod --smallfiles #--logpath=/dev/null # --quiet
+    networks:
+      - profileCVOnline
+
+volumes:
+  site-backend:      
