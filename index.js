@@ -2,9 +2,9 @@
 
 var app = require('./app');
 
+var mongoose = require('mongoose');
 var port = process.env.PORT || 3678;
 
-var mongoose = require('mongoose');
 
 mongoose.connect('mongodb_profile/cvHandler', (err, res) => {
     if (err) {

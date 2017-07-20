@@ -4,7 +4,7 @@ var express = require('express');
 var bodyparser = require('body-parser');
 
 var app = express();
-var api = require('./Routes/userRoutes');
+var api = require('./route/userRoute');
 
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
