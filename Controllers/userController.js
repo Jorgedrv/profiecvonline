@@ -1,5 +1,5 @@
 'user scrict'
-
+var Rx = require('rxjs/Rx');
 var User = require('../Models/userModel');
 
 function getUsers(req, res){

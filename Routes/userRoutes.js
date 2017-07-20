@@ -9,5 +9,6 @@ api.get('/user/:id', userController.getUser);
 api.post('/save', userController.saveUser);
 api.put('/update/:id', userController.updateUser);
 api.delete('/delete/:id', userController.deleteUser);
+api.get('/users2', userController.getUsers);
 
 module.exports = api;

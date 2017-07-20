@@ -4,14 +4,14 @@ networks:
     driver: bridge
 
 services:
-  backend:
+  backend_profile:
     build: .
-    container_name: backend
+    container_name: backend_profile
     ports:
      - "8000:3678"
     volumes:
-      - site-backend:/usr/src/app-backend
-    command: bash -c "npm install --verbose && npm run start"
+      - .:/usr/src/app-backend
+    command: bash -c "npm install --verbose && npm run dev:w"
     networks:
       - profileCVOnline
   mongodb_profile:
@@ -23,5 +23,5 @@ services:
     networks:
       - profileCVOnline
 
-volumes:
-  site-backend:      
+#volumes:
+#  site-backend:      
