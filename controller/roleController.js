@@ -42,8 +42,8 @@ function saveRole(req, res){
     var params = req.body;
 
     role.description = params.description;
-    role.code = params.code;
-    role.status     = params.status;
+    role.code        = params.code;
+    role.status      = params.status;
     
     role.save((err, roleSaved) => {
         if (err) {

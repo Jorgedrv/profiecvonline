@@ -4,7 +4,8 @@ var express = require('express');
 var bodyparser = require('body-parser');
 
 var app = express();
-var api = require('./route/userRoute');
+var userApi = require('./route/userRoute');
+var roleApi = require('./route/roleRoute');
 
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/cvonline', api);
+app.use('/cvonline/user', userApi);
+app.use('/cvonline/role', roleApi);
 
 module.exports = app;

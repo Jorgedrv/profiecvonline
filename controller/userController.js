@@ -38,16 +38,16 @@ function getUser(req, res){
 }
 
 function saveUser(req, res){
+    console.log(req.body);
     var user = new User();
-
     var params = req.body;
-
     user.username = params.username;
     user.password = params.password;
-    user.role     = params.role;
+    user.role     = {
+        roleId : params.roleId
+    };
     user.email    = params.email;
-    user.status   = params.status;
-    
+
     user.save((err, userSave) => {
         if (err) {
             console.log('ERROR');
