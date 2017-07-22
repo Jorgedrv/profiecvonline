@@ -1,6 +1,7 @@
 'user scrict'
 var Rx = require('rxjs/Rx');
-var User = require('../Models/userModel');
+var User = require('../model/user');
+var Role = require('../model/role');
 
 function getUsers(req, res){
     User.find({}).sort('-_id').exec((err, users) => {
@@ -46,7 +47,7 @@ function saveUser(req, res){
     user.role     = params.role;
     user.email    = params.email;
     user.status   = params.status;
-
+    
     user.save((err, userSave) => {
         if (err) {
             console.log('ERROR');
