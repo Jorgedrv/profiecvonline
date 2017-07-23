@@ -1,8 +1,9 @@
 'user scrict'
+
 var Rx = require('rxjs/Rx');
 var Role = require('../model/role');
 
-function getRoles(req, res){
+function getAllRoles(req, res) {
     Role.find({}).sort('-_id').exec((err, roles) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get the Roles List'});
@@ -18,7 +19,7 @@ function getRoles(req, res){
     });
 }
 
-function getRole(req, res){
+function getRoleById(req, res) {
     var roleId = req.params.id;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 
     Role.findById(roleId, (err, role) => {
@@ -27,7 +28,7 @@ function getRole(req, res){
         }
         else {
             if (!role) {
-                res.status(404).send({message: 'No Role was found'});
+                res.status(404).send({message: 'The role does not exist'});
             } 
             else {
                 res.status(200).send({role: role});
@@ -36,7 +37,7 @@ function getRole(req, res){
     });
 }
 
-function saveRole(req, res){
+function saveRole(req, res) {
     var role = new Role();
 
     var params = req.body;
@@ -56,53 +57,46 @@ function saveRole(req, res){
     });
 }
 
-function updateRole(req, res){
+function updateRole(req, res) {
     var roleId = req.params.id;
     var update = req.body;
 
-    Role.findByIdAndUpdate(roleId, update, (err, roleUpdate) => {
+    Role.findByIdAndUpdate(roleId, update, (err, roleUpdated) => {
         if (err) {
             res.status(500).send({message: 'Error trying to update the Role'});
         }
         else {  
-            if (!roleUpdate) {
-                res.status(404).send({message: 'No Role was found'});
+            if (!roleUpdated) {
+                res.status(404).send({message: 'The role does not exist'});
             } 
             else {
-                res.status(200).send({role: roleUpdate});
+                res.status(200).send({role: 'the experience was updated correctly'});
             }
         }  
     });
 }
 
-function deleteRole(req, res){
+function deleteRole(req, res) {
     var roleId = req.params.id;
     
-    Role.findById(roleId, (err, role) => {
+    Role.findByIdAndRemove(roleId, (err, role) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get the Role'});
         } 
         else {
             if(!role){
-                res.status(404).send({message: 'Couldnt find any Role'});
+                res.status(404).send({message: 'The role does not exist'});
             }
             else {
-                role.remove(err => {
-                    if (err) {
-                        res.status(500).send({message: 'The Role coulndt be deleted'});
-                    }
-                    else {
-                        res.status(200).send({Role: 'The Role was deleted correctly'});
-                    }
-                });
+                res.status(200).send({Role: 'The Role was deleted correctly'});
             }
         }
     });
 }
 
 module.exports = {
-    getRoles,
-    getRole,
+    getAllRoles,
+    getRoleById,
     saveRole,
     updateRole,
     deleteRole

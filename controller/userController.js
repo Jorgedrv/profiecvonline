@@ -1,16 +1,17 @@
 'user scrict'
+
 var Rx = require('rxjs/Rx');
 var User = require('../model/user');
 var Role = require('../model/role');
 
-function getUsers(req, res){
+function getAllUsers(req, res) {
     User.find({}).sort('-_id').exec((err, users) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get the User List'});
         }
         else {
             if (!users) {
-                res.status(404).send({message: 'No Users'});
+                res.status(404).send({message: 'Coulndt find any users'});
             } 
             else {
                 res.status(200).send({users});
@@ -19,7 +20,7 @@ function getUsers(req, res){
     });
 }
 
-function getUser(req, res){
+function getUserById(req, res) {
     var userId = req.params.id;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 
     User.findById(userId, (err, user) => {
@@ -28,7 +29,7 @@ function getUser(req, res){
         }
         else {
             if (!user) {
-                res.status(404).send({message: 'No User was found'});
+                res.status(404).send({message: 'The user does not exist'});
             } 
             else {
                 res.status(200).send({user: user});
@@ -37,7 +38,7 @@ function getUser(req, res){
     });
 }
 
-function saveUser(req, res){
+function saveUser(req, res) {
     console.log(req.body);
     var user = new User();
     var params = req.body;
@@ -59,7 +60,7 @@ function saveUser(req, res){
     });
 }
 
-function updateUser(req, res){
+function updateUser(req, res) {
     var userId = req.params.id;
     var update = req.body;
 
@@ -69,43 +70,36 @@ function updateUser(req, res){
         }
         else {  
             if (!userUpdate) {
-                res.status(404).send({message: 'No User was found'});
+                res.status(404).send({message: 'The user does not exist'});
             } 
             else {
-                res.status(200).send({user: userUpdate});
+                res.status(200).send({user: 'The user was updated correctly'});
             }
         }  
     });
 }
 
-function deleteUser(req, res){
+function deleteUser(req, res) {
     var userId = req.params.id;
     
-    User.findById(userId, (err, user) => {
+    User.findByIdAndRemove(userId, (err, user) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get the User'});
         } 
         else {
             if(!user){
-                res.status(404).send({message: 'Couldnt find any User'});
+                res.status(404).send({message: 'The user does not exist'});
             }
             else {
-                user.remove(err => {
-                    if (err) {
-                        res.status(500).send({message: 'The User coulndt be deleted'});
-                    }
-                    else {
-                        res.status(200).send({User: 'The User was deleted correctly'});
-                    }
-                });
+                res.status(200).send({User: 'The User was deleted correctly'});
             }
         }
     });
 }
 
 module.exports = {
-    getUsers,
-    getUser,
+    getAllUsers,
+    getUserById,
     saveUser,
     updateUser,
     deleteUser
