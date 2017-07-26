@@ -27,6 +27,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/', function(req, res){
+    res.sendFile(__dirname + '/index.html');
+});
+
 app.use('/cvonline/about', aboutApi);
 app.use('/cvonline/address', addressApi);
 app.use('/cvonline/award', awardApi);

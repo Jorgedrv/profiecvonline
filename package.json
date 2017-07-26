@@ -19,8 +19,11 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
+    "mocha": "^3.4.2",
     "mongoose": "^4.11.3",
-    "rxjs": "^5.4.2"
+    "rxjs": "^5.4.2",
+    "should": "^11.2.1",
+    "supertest": "^3.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
