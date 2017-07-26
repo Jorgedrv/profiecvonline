@@ -8,7 +8,7 @@ services:
     build: .
     container_name: backend_profile
     ports:
-     - "8000:3678"
+      - "8000:3678"
     volumes:
       - .:/usr/src/app-backend
     command: bash -c "npm install --verbose && npm run dev:w"
@@ -22,6 +22,15 @@ services:
     command: mongod --smallfiles #--logpath=/dev/null # --quiet
     networks:
       - profileCVOnline
-
+  jenkins_profile:
+    build: ./jenkins
+    container_name: jenkins_profile
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins:/var/jenkins_home
+    networks:
+      - profileCVOnline
 #volumes:
 #  site-backend:      
