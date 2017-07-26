@@ -4,7 +4,7 @@ var Rx = require('rxjs/Rx');
 var User = require('../model/user');
 var Role = require('../model/role');
 
-function getAllUsers(req, res) {
+function getAll(req, res) {
     User.find({}).sort('-_id').exec((err, users) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get the User List'});
@@ -20,7 +20,7 @@ function getAllUsers(req, res) {
     });
 }
 
-function getUserById(req, res) {
+function getById(req, res) {
     var userId = req.params.id;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 
     User.findById(userId, (err, user) => {
@@ -38,7 +38,7 @@ function getUserById(req, res) {
     });
 }
 
-function saveUser(req, res) {
+function save(req, res) {
     console.log(req.body);
     var user = new User();
     var params = req.body;
@@ -60,7 +60,7 @@ function saveUser(req, res) {
     });
 }
 
-function updateUser(req, res) {
+function update(req, res) {
     var userId = req.params.id;
     var update = req.body;
 
@@ -79,7 +79,7 @@ function updateUser(req, res) {
     });
 }
 
-function deleteUser(req, res) {
+function deleteById(req, res) {
     var userId = req.params.id;
     
     User.findByIdAndRemove(userId, (err, user) => {
@@ -98,9 +98,9 @@ function deleteUser(req, res) {
 }
 
 module.exports = {
-    getAllUsers,
-    getUserById,
-    saveUser,
-    updateUser,
-    deleteUser
+    getAll,
+    getById,
+    save,
+    update,
+    deleteById
 }

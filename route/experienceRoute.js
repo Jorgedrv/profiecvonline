@@ -4,10 +4,10 @@ var express = require('express');
 var experienceController = require('../controller/experienceController');
 var api = express.Router();
 
-api.get('/all', experienceController.getAllExperiences);
-api.get('/:id', experienceController.getExperienceById);
-api.post('/save', experienceController.saveExperience);
-api.put('/update/:id', experienceController.updateExperience);
-api.delete('/delete/:id', experienceController.deleleExperience);
+api.get('/all', experienceController.getAll);
+api.get('/:id', experienceController.getById);
+api.post('/save', experienceController.save);
+api.put('/update/:id', experienceController.update);
+api.delete('/delete/:id', experienceController.deleleById);
 
 module.exports = api;

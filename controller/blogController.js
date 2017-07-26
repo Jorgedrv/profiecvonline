@@ -3,7 +3,7 @@
 var Rx = require('rxjs/Rx');
 var Blog = require('../model/blog');
 
-function getAllBlogs(req, res) {
+function getAll(req, res) {
     Blog.find({}).sort('-_id').exec((err, blogs) => {
         if (err) {
             res.status(500).send({message: 'Error traying to get the blog list'});
@@ -19,7 +19,7 @@ function getAllBlogs(req, res) {
     });
 }
 
-function getBlogById(req, res) {
+function getById(req, res) {
     var blogId = req.params.id;
 
     Blog.findById(blogId, (err, blog) => {
@@ -37,7 +37,7 @@ function getBlogById(req, res) {
     });
 }
 
-function saveBlog(req, res) {
+function save(req, res) {
     var blog = new Blog();
 
     var params = req.body;
@@ -45,7 +45,7 @@ function saveBlog(req, res) {
     blog.description = params.description;
     blog.review = params.review;
     blog.icon = params.icon;
-
+    blog.user.userId = params.userId;
     blog.save((err, blogSaved) => {
         if (err) {
             res.status(500).send({message: 'Error traying to save the list'});
@@ -56,7 +56,7 @@ function saveBlog(req, res) {
     });
 }
 
-function updateBlog(req, res) {
+function update(req, res) {
     var blogId = req.params.id;
     var update = req.body;
 
@@ -75,7 +75,7 @@ function updateBlog(req, res) {
     });
 }
 
-function deleteBlog(req, res) {
+function deleteById(req, res) {
     var blogId = req.params.id;
 
     Blog.findByIdAndRemove(blogId, (err, blogDeleted) => {
@@ -94,9 +94,9 @@ function deleteBlog(req, res) {
 }
 
 module.exports = {
-    getAllBlogs,
-    getBlogById,
-    saveBlog,
-    updateBlog, 
-    deleteBlog
+    getAll,
+    getById,
+    save,
+    update, 
+    deleteById
 }

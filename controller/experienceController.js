@@ -3,7 +3,7 @@
 var Rx = require('rxjs/Rx');
 var Experience = require('../model/experience');
 
-function getAllExperiences(req, res) {
+function getAll(req, res) {
     Experience.find({}).sort('-_id').exec((err, experiences) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get a experiences list'});
@@ -19,7 +19,7 @@ function getAllExperiences(req, res) {
     });
 }
 
-function getExperienceById(req, res) {
+function getById(req, res) {
     var experienceId = req.params.id;
 
     Experience.findById(experienceId, (err, experience) => {
@@ -37,7 +37,7 @@ function getExperienceById(req, res) {
     });
 }
 
-function saveExperience(req, res) {
+function save(req, res) {
     var experience = new Experience();
 
     var params = req.body;
@@ -49,7 +49,7 @@ function saveExperience(req, res) {
     experience.icon = params.icon;
     experience.date_in = params.date_in;
     experience.date_out = params.date_out;
-
+    experience.user.userId = params.userId;
     experience.save((err, experienceSaved) => {
         if (err) {
             res.status(500).send({message: 'Error trying to save the experience'});
@@ -60,7 +60,7 @@ function saveExperience(req, res) {
     });
 }
 
-function updateExperience(req, res) {
+function update(req, res) {
     var experienceId = req.params.id;
     var update = req.body;
 
@@ -79,7 +79,7 @@ function updateExperience(req, res) {
     });
 } 
 
-function deleleExperience(req, res) {
+function deleteById(req, res) {
     var experienceId = req.params.id;
 
     Experience.findByIdAndRemove(experienceId, (err, experienceDeleted) => {
@@ -98,9 +98,9 @@ function deleleExperience(req, res) {
 }
 
 module.exports = {
-    getAllExperiences,
-    getExperienceById, 
-    saveExperience,
-    updateExperience,
-    deleleExperience
+    getAll,
+    getById, 
+    save,
+    update,
+    deleteById
 }

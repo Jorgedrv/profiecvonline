@@ -1,7 +1,7 @@
 'use strict'
 
 var express = require('express');
-var awardController = require('../controller/awardController');
+var addressController = require('../controller/addressController');
 var api = express.Router();
 
 api.get('/all', awardController.getAll);

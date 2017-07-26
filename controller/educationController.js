@@ -3,7 +3,7 @@
 var Rx = require('rxjs/Rx');
 var Education = require('../model/education');
 
-function getAllEducations(req, res) {
+function getAll(req, res) {
     Education.find({}).sort('-_id').exec((err, educations) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get the education list'});
@@ -19,7 +19,7 @@ function getAllEducations(req, res) {
     });
 }
 
-function getEducationById(req, res) {
+function getById(req, res) {
     var educationId = req.params.id;
     
     Education.findById(educationId, (err, education) => {
@@ -37,7 +37,7 @@ function getEducationById(req, res) {
     });
 }
 
-function saveEducation(req, res) {
+function save(req, res) {
     var education = new Education();
 
     var params = req.body;
@@ -47,7 +47,7 @@ function saveEducation(req, res) {
     education.review = params.review;
     education.date_in = params.date_in;
     education.date_out = params.date_out;
-
+    education.user.userId = params.userId;
     education.save((err, educationSaved) => {
         if (err) {
             res.status(500).send({message: 'Error trying to save the education'});
@@ -58,7 +58,7 @@ function saveEducation(req, res) {
     });
 }
 
-function updateEducation(req, res) {
+function update(req, res) {
     var educationId = req.params.id;
     var update = req.body;
 
@@ -77,7 +77,7 @@ function updateEducation(req, res) {
     });
 }
 
-function deleteEducation(req, res) {
+function deleteById(req, res) {
     var educationId = req.params.id;
 
     Education.findByIdAndRemove(educationId, (err, education) => {
@@ -96,9 +96,9 @@ function deleteEducation(req, res) {
 }
 
 module.exports = {
-    getAllEducations,
-    getEducationById,
-    saveEducation,
-    updateEducation,
-    deleteEducation
+    getAll,
+    getById,
+    save,
+    update,
+    deleteById
 }

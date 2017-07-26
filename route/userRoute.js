@@ -4,10 +4,10 @@ var express = require('express');
 var userController = require('../controller/userController');
 var api = express.Router();
 
-api.get('/all', userController.getAllUsers);
-api.get('/:id', userController.getUserById);
-api.post('/save', userController.saveUser);
-api.put('/update/:id', userController.updateUser);
-api.delete('/delete/:id', userController.deleteUser);
+api.get('/all', userController.getAll);
+api.get('/:id', userController.getById);
+api.post('/save', userController.save);
+api.put('/update/:id', userController.update);
+api.delete('/delete/:id', userController.deleteById);
 
 module.exports = api;

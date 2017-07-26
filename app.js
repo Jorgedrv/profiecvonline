@@ -4,12 +4,16 @@ var express = require('express');
 var bodyparser = require('body-parser');
 
 var app = express();
-var userApi = require('./route/userRoute');
-var roleApi = require('./route/roleRoute');
+var aboutApi = require('./route/aboutRoute');
+var addressApi = require('./route/addressRoute');
+var awardApi = require('./route/awardRoute');
+var blogApi = require('./route/blogRoute');
 var educationApi = require('./route/educationRoute');
 var experienceApi = require('./route/experienceRoute');
-var blogApi = require('./route/blogRoute');
-var awardApi = require('./route/awardRoute');
+var portfolioApi = require('./route/portfolioRoute');
+var roleApi = require('./route/roleRoute');
+var skillApi = require('./route/skillRoute');
+var userApi = require('./route/userRoute');
 
 app.use(bodyparser.urlencoded({extended:false}));
 app.use(bodyparser.json());
@@ -22,11 +26,16 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/cvonline/user', userApi);
-app.use('/cvonline/role', roleApi);
+app.use('/cvonline/about', aboutApi);
+app.use('/cvonline/address', addressApi);
+app.use('/cvonline/award', awardApi);
+app.use('/cvonline/blog', blogApi);
 app.use('/cvonline/education', educationApi);
 app.use('/cvonline/experience', experienceApi);
-app.use('/cvonline/blog', blogApi);
-app.use('/cvonline/award', awardApi);
+app.use('/expertise', expertiseApi);
+app.use('/portfolio', portfolioApi);
+app.use('/cvonline/role', roleApi);
+app.use('/cvonline/skill', skillApi);
+app.use('/cvonline/user', userApi);
 
 module.exports = app;

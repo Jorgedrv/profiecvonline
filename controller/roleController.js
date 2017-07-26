@@ -3,7 +3,7 @@
 var Rx = require('rxjs/Rx');
 var Role = require('../model/role');
 
-function getAllRoles(req, res) {
+function getAll(req, res) {
     Role.find({}).sort('-_id').exec((err, roles) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get the Roles List'});
@@ -19,7 +19,7 @@ function getAllRoles(req, res) {
     });
 }
 
-function getRoleById(req, res) {
+function getById(req, res) {
     var roleId = req.params.id;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 
     Role.findById(roleId, (err, role) => {
@@ -37,7 +37,7 @@ function getRoleById(req, res) {
     });
 }
 
-function saveRole(req, res) {
+function save(req, res) {
     var role = new Role();
 
     var params = req.body;
@@ -57,7 +57,7 @@ function saveRole(req, res) {
     });
 }
 
-function updateRole(req, res) {
+function update(req, res) {
     var roleId = req.params.id;
     var update = req.body;
 
@@ -76,7 +76,7 @@ function updateRole(req, res) {
     });
 }
 
-function deleteRole(req, res) {
+function deleteById(req, res) {
     var roleId = req.params.id;
     
     Role.findByIdAndRemove(roleId, (err, role) => {
@@ -95,9 +95,9 @@ function deleteRole(req, res) {
 }
 
 module.exports = {
-    getAllRoles,
-    getRoleById,
-    saveRole,
-    updateRole,
-    deleteRole
+    getAll,
+    getById,
+    save,
+    update,
+    deleteById
 }

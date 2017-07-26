@@ -3,7 +3,7 @@
 var Rx = require('rxjs/Rx');
 var Award = require('../model/award');
 
-function getAllAwards(req, res) {
+function getAll(req, res) {
     Award.find({}).sort('-_id').exec((err, awards) => {
         if (err) {
             res.status(500).send({message: 'Error trying to get the awards list'}); 
@@ -19,7 +19,7 @@ function getAllAwards(req, res) {
     });
 }
 
-function getAwardById(req, res) {
+function getById(req, res) {
     var awardId = req.params.id;
 
     Award.findById(awardId, (err, award) => {
@@ -37,7 +37,7 @@ function getAwardById(req, res) {
     });
 }
 
-function saveAward(req, res) {
+function save(req, res) {
     var award = new Award();
     var params = req.body;
 
@@ -45,6 +45,7 @@ function saveAward(req, res) {
     award.subtitle = params.subtitle;
     award.review = params.review;
     award.icon = params.icon;
+    award.user.userId = params.userId;
 
     award.save((err, awardSaved)=> {
         if (err) {
@@ -56,7 +57,7 @@ function saveAward(req, res) {
     });
 }
 
-function updateAward(req, res) {
+function update(req, res) {
     var awardId = req.params.id;
     var update = req.body;
 
@@ -75,7 +76,7 @@ function updateAward(req, res) {
     });
 }
 
-function deleteAward(req, res) {
+function deleteById(req, res) {
     var awardId = req.params.id;
 
     Award.findByIdAndRemove(awardId, (err, awardDeleted) => {
@@ -94,9 +95,9 @@ function deleteAward(req, res) {
 }
 
 module.exports = {
-    getAllAwards,
-    getAwardById, 
-    saveAward, 
-    updateAward, 
-    deleteAward
+    getAll,
+    getById, 
+    save, 
+    update, 
+    deleteById
 }
