@@ -22,15 +22,15 @@ services:
     command: mongod --smallfiles #--logpath=/dev/null # --quiet
     networks:
       - profileCVOnline
-  jenkins_profile:
-    build: ./jenkins
-    container_name: jenkins_profile
-    ports:
-      - "8080:8080"
-      - "50000:50000"
-    volumes:
-      - ./jenkins:/var/jenkins_home
-    networks:
-      - profileCVOnline
+  # jenkins_profile:
+  #   build: ./jenkins
+  #   container_name: jenkins_profile
+  #   ports:
+  #     - "8080:8080"
+  #     - "50000:50000"
+  #   volumes:
+  #     - ./jenkins:/var/jenkins_home
+  #   networks:
+  #     - profileCVOnline
 #volumes:
 #  site-backend:      
