@@ -11,11 +11,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://Jorgedrv@bitbucket.org/Jorgedrv/profilecvonline.git"
+    "url": "git+https://github.com/Jorgedrv/profile-online.git"
   },
   "author": "Jorge Romero and Anderson Gonzalez",
   "license": "MIT",
-  "homepage": "https://bitbucket.org/Jorgedrv/profilecvonline#readme",
+  "homepage": "https://github.com/Jorgedrv/profile-online/blob/master/README.md",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
