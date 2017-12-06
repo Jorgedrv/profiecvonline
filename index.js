@@ -6,8 +6,8 @@ var mongoose = require('mongoose');
 var port = process.env.PORT || 3678;
 
 
-mongoose.connect('mongodb_profile/cvHandler', (err, res) => {
-// mongoose.connect('mongodb://localhost:27017', (err, res) => {
+//mongoose.connect('mongodb_profile/cvHandler', (err, res) => {
+mongoose.connect('mongodb://localhost:27017', (err, res) => {
     if (err) {
         throw err;
     }

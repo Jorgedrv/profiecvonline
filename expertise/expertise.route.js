@@ -1,7 +1,7 @@
 'use strict'
 
 var express = require('express');
-var controller = require('../controller/expertiseController');
+var controller = require('../expertise/expertise.controller');
 var expertise = express.Router();
 
 expertise.get('/all', controller.getAll);
