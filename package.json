@@ -1,6 +1,6 @@
 {
   "name": "profilecvonline",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Project about Curriculum Vitae Online",
   "main": "index.js",
   "scripts": {
